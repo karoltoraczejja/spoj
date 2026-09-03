@@ -1,1 +1,0 @@
-pour.o: ../pour.cpp
