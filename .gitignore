@@ -1,0 +1,13 @@
+/.metadata/
+scities/.cproject
+scities/.project
+scities/.settings/language.settings.xml
+scities/.settings/org.eclipse.core.resources.prefs
+scities/Debug/makefile
+scities/Debug/scities
+scities/Debug/scities.d
+scities/Debug/scities.o
+scities/Debug/sources.mk
+scities/Debug/subdir.mk
+scities/back.txt
+
