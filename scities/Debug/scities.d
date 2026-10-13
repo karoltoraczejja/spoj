@@ -1,0 +1,1 @@
+scities.o: ../scities.cpp

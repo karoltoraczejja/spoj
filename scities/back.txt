@@ -1,0 +1,93 @@
+	/*	int myTotal = init;
+	 * 	sellerCell * actual = actual(si);
+	 *	sellerCell * predecessor = actual -> prev;
+	 *	if(predecessor != NULL) {
+	 *		int ap = byBuyerMtx[predecessor -> buyerIdx];
+	 *		myTotal = myTotal - actual -> value + predecessor -> value;
+	 *		if(ap == -1) {
+	 *			if(myTotal > total) {
+	 *				accept(myTotal, predecessor, si);
+	 *				return true;
+	 *			}
+	 *			return false;
+	 *		} else {
+	 *			if(digDeep(ap, myTotal, total)) {
+	 *				accept(myTotal, predecessor, si);
+	 *				return true;
+	 *			}
+	 *			return false;
+	 *		}
+	 *	} else {
+	 *		myTotal = myTotal - actual -> value;
+	 *		if(myTotal > total) {
+	 *			byBuyerMtx[si] = -1;
+	 *			bySellerMtx[sm] -> actual = -1;
+	 *			return true;
+	 *		}
+	 *		return false;
+	 *	}
+	 * */
+	return false;
+	
+	while(x == -1 && pds -> prev != NULL) {
+				myTotal = myTotal - pds -> value + pds -> prev -> value;
+				pds = pds -> prev;
+				if(byBuyerMtx[pds->buyerIdx] == -1) {
+					if(determin(myTotal >= total, myTotal, si, pds, buyerBuff, locked)) x=myTotal;
+					else x=-1;
+					continue;
+				}
+				x = digDeep(byBuyerMtx[pds->buyerIdx], pds, myTotal, toOmit, buyerBuff, locked);
+			}
+	
+		/*	sellerCell * sc = &(bySellerMtx[si] -> column[asi]);
+	 * 	int act = 0;
+	 * 	if(actual(si) != NULL) act = actual(si) -> value;
+	 *	int nTotal = total - act + sc -> value;
+	 *	int ap = byBuyerMtx[sc -> buyerIdx];
+	 *	if(ap == -1) {
+	 *		if(nTotal > total) {
+	 *			if(act != 0) byBuyerMtx[actual(si) -> buyerIdx] = -1;
+	 *			byBuyerMtx[sc -> buyerIdx] = si;
+	 *			sc -> total = nTotal;
+	 *			bySellerMtx[si] -> actual = sc -> idx;
+	 *			raise(sc);
+	 *		}
+	 *	} else {
+	 *		if(digDeep(ap, nTotal, total)) {
+	 *			if(byBuyerMtx[actual(si) -> buyerIdx] == actual(si)->buyerIdx)
+	 *				byBuyerMtx[actual(si) -> buyerIdx] = -1;
+	 *			byBuyerMtx[sc -> buyerIdx] = si;
+	 *			bySellerMtx[si] -> actual = sc -> idx;
+	 *			sc -> total = nTotal;
+	 *			raise(sc);
+	 *		} else {
+	 *			sc -> total = nTotal;
+	 *			raise(sc);
+	 *		}
+	 *	}
+	 * */
+	 
+	 bool nh = false;
+	if(bySellerMtx[si].actual == pds && pds != NULL) {
+		myTotal = myTotal - pds -> value;
+		pds = getHigh(toOmit, bySellerMtx[pds->buyerIdx].high); 
+		nh = true;
+	}
+	
+	if(bySellerMtx[si].actual != NULL)
+			nTotal = digDeep(si,
+					bySellerMtx[si].actual,
+					total + sc -> value, sc -> buyerIdx, buyerBuffBar, lockedBar);
+	 
+while(x == -1 && pds -> prev != NULL) {
+				myTotal = myTotal - pds -> value + pds -> prev -> value;
+				pds = pds -> prev;
+				if(byBuyerMtx[pds -> buyerIdx] == -1) {
+					if(determin(myTotal >= total, myTotal, si, pds, buyerBuff, locked)) x=myTotal;
+					else x = -1;
+					continue;
+				}
+				x = digDeep(byBuyerMtx[pds->buyerIdx], bySellerMtx[byBuyerMtx[pds->buyerIdx]].actual, myTotal, toOmit, buyerBuff, locked);
+			}
+			}
